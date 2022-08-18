@@ -1,4 +1,4 @@
-/**
+/*
 ## Arrays #4
 
 1. create "fruits" array and store some fruit values
