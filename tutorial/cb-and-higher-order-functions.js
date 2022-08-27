@@ -1,6 +1,7 @@
 function morning(name) {
 	return `Good morning ${name.toUpperCase()}`
 }
+
 function afternoon(name) {
 	return `Good afternoon ${name.repeat(1).toUpperCase()}`
 }
@@ -10,7 +11,7 @@ function greet(name, cb) {
 	console.log(`${cb(name)}, my name is ${myName}`)
 }
 
-greet("bobo", morning, afternoon)
+greet("bobo", morning)
 greet("peter", afternoon)
 
 // Callback Functions, Higher Order Functions, Functions as First Class Objects/Citizens
