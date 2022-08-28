@@ -31,3 +31,7 @@ const students = [
 		favouriteSubject: "History",
 	},
 ]
+
+function sayName(name) {
+	console.log(name);
+}

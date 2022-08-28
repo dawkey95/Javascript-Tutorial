@@ -47,7 +47,14 @@
   math: 3
   }
 2. assign to survey and log
-
 */
 
-console.log(students);
+
+// Have access to students from data.js
+const updatedStudents = students.map(function(student) {
+  // console.log(student);
+  student.role = 'student';
+  return student;
+})
+
+console.log(updatedStudents);
