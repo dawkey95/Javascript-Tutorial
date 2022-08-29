@@ -50,11 +50,9 @@
 */
 
 
-/* 
-*
-Have access to students from data.js 
-*
-*/
+/**
+  Have access to students from data.js 
+**/
 
 const updatedStudents = students.map(function(student) {    // Creates updatedStudents that MAPs over the 'students' array. CB function passing in student
   student.role = 'student';                                 // New key of 'role' is added and assigned the value 'student'
@@ -82,7 +80,6 @@ const averageScore = students.reduce(function(scoresTotal, student) {
 
 
 const survey = students.reduce(function(survey, student) {
-  // console.log(student.favouriteSubject);
   const favSubject = student.favouriteSubject;
 
   if(survey[favSubject]) {
@@ -90,7 +87,6 @@ const survey = students.reduce(function(survey, student) {
   } else {
     survey[favSubject] = 1
   }
-  
   return survey;
 }, {});
-console.log(survey);
+// console.log(survey);
