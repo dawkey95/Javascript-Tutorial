@@ -50,11 +50,47 @@
 */
 
 
-// Have access to students from data.js
-const updatedStudents = students.map(function(student) {
-  // console.log(student);
-  student.role = 'student';
-  return student;
-})
+/* 
+*
+Have access to students from data.js 
+*
+*/
 
-console.log(updatedStudents);
+const updatedStudents = students.map(function(student) {    // Creates updatedStudents that MAPs over the 'students' array. CB function passing in student
+  student.role = 'student';                                 // New key of 'role' is added and assigned the value 'student'
+  return student;                                           // returns the student parameter which updates the updatedStudents array
+});
+// console.log(updatedStudents);
+
+
+const highScores = students.filter(function(student) {
+  return student.score >= 70;
+});
+// console.log(highScores);
+
+
+const specificId = students.find(function(student) {
+  return student.id === 1;
+});
+// console.log(specificId);
+
+
+const averageScore = students.reduce(function(scoresTotal, student) {
+  return scoresTotal + student.score;
+}, 0) / students.length;
+// console.log(averageScore);
+
+
+const survey = students.reduce(function(survey, student) {
+  // console.log(student.favouriteSubject);
+  const favSubject = student.favouriteSubject;
+
+  if(survey[favSubject]) {
+    survey[favSubject] = survey[favSubject] + 1;
+  } else {
+    survey[favSubject] = 1
+  }
+  
+  return survey;
+}, {});
+console.log(survey);
