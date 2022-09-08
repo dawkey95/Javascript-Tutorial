@@ -85,13 +85,27 @@ const menu = [
 const sectionCenter = document.querySelector(".section-center")
 const btnContainer = document.querySelector(".btn-container")
 
-// Load items
+/*
+ * ================================
+ * Load items upon browser loading
+ * ================================
+ */
 window.addEventListener("DOMContentLoaded", function () {
 	displayMenuItems(menu)
 	displayMenuBtns()
 })
 
-// Displays the menu items dynamically
+/*
+ * ======================================================
+ * Displays the menu items as they are added dynamically:
+ * ======================================================
+ *
+ * - parameter gets set when function is invoked. (like a variable MenuItems = '';)
+ * - store array in new variable and then iterate over array using MAP() with CB function
+ * - then returns a template literal with HTML code to be dynamically added
+ * - the displayMenu items are joined using join('') to remove the (,) between each iteration
+ * - the code is then written to the parent element (sectionCenter) using innerHTML = (variable assigned at start)
+ */
 function displayMenuItems(menuItems) {
 	let displayMenu = menuItems.map(function (item) {
 		return `<article class="menu-item">
@@ -109,7 +123,13 @@ function displayMenuItems(menuItems) {
 	sectionCenter.innerHTML = displayMenu
 }
 
-// Displays the menu buttons dynamically
+/*
+ * ========================================================
+ * Displays the menu buttons as they are added dynamically:
+ * ========================================================
+ *
+ * -
+ */
 function displayMenuBtns() {
 	const categories = menu.reduce(
 		function (values, item) {
