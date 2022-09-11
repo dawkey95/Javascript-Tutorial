@@ -7,6 +7,7 @@
 const date = document.getElementById('date');
 date.innerHTML = new Date().getFullYear();
 
+
 // ********** close links ************
 const linksContainer = document.querySelector('.links-container');
 const links = document.querySelector('.links');
@@ -23,6 +24,7 @@ navToggle.addEventListener('click', function () {
 		linksContainer.style.height = 0;
 	}
 });
+
 
 // ********** fixed navbar ************
 const navBar = document.getElementById('nav');
@@ -44,6 +46,7 @@ window.addEventListener('scroll', function () {
 		topLink.classList.remove('show-link');
 	}
 });
+
 
 // ********** smooth scroll ************
 // select links
