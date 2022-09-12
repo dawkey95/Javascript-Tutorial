@@ -7,7 +7,6 @@
 const date = document.getElementById('date');
 date.innerHTML = new Date().getFullYear();
 
-
 // ********** close links ************
 const linksContainer = document.querySelector('.links-container');
 const links = document.querySelector('.links');
@@ -24,7 +23,6 @@ navToggle.addEventListener('click', function () {
 		linksContainer.style.height = 0;
 	}
 });
-
 
 // ********** fixed navbar ************
 const navBar = document.getElementById('nav');
@@ -47,6 +45,40 @@ window.addEventListener('scroll', function () {
 	}
 });
 
-
 // ********** smooth scroll ************
-// select links
+const scrollLink = document.querySelectorAll('.scroll-link');
+
+scrollLink.forEach(function (link) {
+	link.addEventListener('click', function (e) {
+		// prevent default scroll behaviour
+		e.preventDefault();
+
+		// navigate to specific section
+		// the slice(1) cuts the string starting at index of 1 (cuts off the #)
+		const id = e.currentTarget.getAttribute('href').slice(1);
+		const element = document.getElementById(id);
+
+    // calculate the heights
+    const navHeight = navBar.getBoundingClientRect().height;
+    const containerHeight = linksContainer.getBoundingClientRect().height;
+    const fixedNav = navBar.classList.contains('fixed-nav');
+
+		let position = element.offsetTop - navHeight;
+
+    if(!fixedNav) {
+      position = position - navHeight;
+    }
+    if(navHeight > 82) {
+      position = position + containerHeight;
+    }
+
+		window.scrollTo({
+			left: 0,
+			top: position,
+		});
+
+    // This hides the nav bar after section button is clicked. 
+    // Enhances user experience
+    linksContainer.style.height = 0;
+	});
+});
