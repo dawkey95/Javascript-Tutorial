@@ -27,8 +27,14 @@ const deadline = document.querySelector('.deadline');
 const giveawayDate = document.querySelector('.giveaway');
 const timeItems = document.querySelectorAll('.deadline-format h4');
 
+let tempDate = new Date();
+let tempYear = tempDate.getFullYear();
+let tempMonth = tempDate.getMonth();
+let tempDay= tempDate.getDate();
+
 // Set giveaway end date dynamically
-let futureDate = new Date(2022, 9, 25, 18, 30, 0);
+// let futureDate = new Date(2022, 9, 25, 18, 30, 0);
+const futureDate = new Date(tempYear, tempMonth, tempDay + 10, 12, 30, 0);
 
 const year = futureDate.getFullYear();
 const hours = futureDate.getHours();
