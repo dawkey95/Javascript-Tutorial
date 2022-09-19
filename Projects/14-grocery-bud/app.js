@@ -13,9 +13,13 @@ let editElement;
 let editFlag = false;
 let editID = '';
 
+
 // ****** EVENT LISTENERS **********
 // submit form
 form.addEventListener('submit', addItem);
+
+// clear values
+clearBtn.addEventListener('click', clearItems);
 
 // ****** FUNCTIONS **********
 function addItem(e) {
@@ -42,16 +46,31 @@ function addItem(e) {
       </button>
     </div>`;
 
+		const deleteBtn = element.querySelector('.delete-btn');
+		const editBtn = element.querySelector('.edit-btn');
+
+		deleteBtn.addEventListener('click', deleteItem);
+		editBtn.addEventListener('click', editItem);
+
     // append child
     list.appendChild(element);
     // display alert
     displayAlert('item added to the list', 'success')
     // show container
     groceryCont.classList.add('show-container');
+
+		// add to local storage
+		addToLocalStorage(id, value);
+
+		// set back to default
+		setBackToDefault();
 	} 
   
   else if (value && editFlag) {
-		console.log('editing');
+		editElement.innerHTML = value;
+		displayAlert('value changed', 'success');
+		editLocalStorage(editID, value);
+		setBackToDefault();
 	} 
   
   else {
@@ -59,6 +78,8 @@ function addItem(e) {
 	}
 }
 
+
+// ****** ALERT **********
 // display alert
 function displayAlert(text, action) {
 	alert.textContent = text;
@@ -71,6 +92,79 @@ function displayAlert(text, action) {
 	}, 2000);
 }
 
+
+// ****** EDIT ITEMS **********
+function editItem(e) {
+	const element = e.currentTarget.parentElement.parentElement;
+
+	// set edit item
+	editElement = e.currentTarget.parentElement.previousElementSibling;
+
+	// set form value
+	grocery.value = editElement.innerHTML;
+	editFlag = true;
+	editID = element.dataset.id;
+	submitBtn.textContent = 'edit';
+}
+
+editLocalStorage(editID, value);
+
+
+// ****** DELETE ITEMS **********
+function deleteItem(e) {
+	const element = e.currentTarget.parentElement.parentElement;
+	const id = element.dataset.id;
+
+	list.removeChild(element);
+	if(list.children.length === 0) {
+		groceryCont.classList.remove('show-container');	
+	}
+
+	displayAlert('item removed', 'danger')
+	setBackToDefault();
+
+	// remove from local storage
+	// removeFromLocalStorage(id);
+}
+
+
+// ****** CLEAR ITEMS **********
+function clearItems() {
+	const items = document.querySelectorAll('.grocery-item');
+	if(items.length > 0) {
+		items.forEach(function(item) {
+			list.removeChild(item);
+		});
+	}
+
+	groceryCont.classList.remove('show-container');
+	displayAlert('emptied list', 'success');
+	setBackToDefault();
+	// localStorage.removeItem('list');
+}
+
+
+// ****** SET BACK TO DEFAULT **********
+function setBackToDefault() {
+	grocery.value = '';
+	editFlag = false;
+	editID = '';
+	submitBtn.textContent = 'submit';
+}
+
+
 // ****** LOCAL STORAGE **********
+function addToLocalStorage(id, value) {
+	
+}
+
+function removeFromLocalStorage(id) {
+
+}
+
+function editLocalStorage(id, value) {
+	
+}
+
 
 // ****** SETUP ITEMS **********
